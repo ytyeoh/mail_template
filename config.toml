@@ -1,0 +1,4 @@
+baseURL = 'https://ytyeoh.github.io/mail_template/'
+languageCode = 'en-us'
+title = 'Email'
+theme = "ananke"
