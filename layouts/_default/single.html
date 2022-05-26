@@ -62,39 +62,71 @@
     {{ with .Params }}
     
     <div class="w-100">
-    	<ul>
-		    {{ range .domain }}
-		    <h2>{{.name}} {{ .email | len }} emails</h2>
-		    <h3>Hosting: {{ .hosting }}</h3>
-		    <table class="f6 w-100 mw8 center">
+		{{ $cost:= 0 }}
+		{{ $total:= 0 }}
+	    {{ range $index, $val :=.domain }}
+	    <h2>{{.name}} {{ .email | len }} emails</h2>
+	    <h3>Hosting: {{ .hosting }}</h3>
+	    <table class="f6 w-100 mw8 center">
+	    	<tr>
+	    		<th>Name</th>
+	    		<th>Email</th>
+	    		<th>Status</th>
+	    		<th>Last Sign In</th>
+	    		<th>Email Usage</th>
+	    		<th>Price</th>
+	    	</tr>
+	    	{{ $xyz := $index}}
+	    	{{range $index, $val :=.email }}
+	    	
 		    	<tr>
-		    		<th>Name</th>
-		    		<th>Email</th>
-		    		<th>Status</th>
-		    		<th>Last Sign In</th>
-		    		<th>Email Usage</th>
+				    <td>{{add $index 1}}. {{.name}}</td>
+				    <td>{{.email}}</td>
+				    <td>{{.status}}</td>
+				    <td>{{.login}}</td>
+				    <td>{{.usage}}GB</td>
+				    {{ if lt .usage  20 }}
+			    		<td>RM <span class="cost{{$xyz}}" value="{{  add $cost 20 }}">{{  add $cost 20 }}</span></td>
+			    	{{ else }}
+				    	<td>RM <span class="cost{{$xyz}}" value="{{  add $cost 40 }}">{{  add $cost 40 }}</span></td>
+			    	{{ end }}
 		    	</tr>
-		    	{{$num:=0}}
-		    	{{range $index, $val :=.email}}
 		    	
-			    	<tr>
-					    <td>{{add $index 1}}. {{.name}}</td>
-					    <td>{{.email}}</td>
-					    <td>{{.status}}</td>
-					    <td>{{.login}}</td>
-					    <td>{{.usage}}</td>
-			    	</tr>
-		    	{{ end }}
-		    </table>
-			    
-		    {{ end }}
-	    </ul>
+	    	{{ end }}
+	    	<tr>
+	    		<td  colspan="4"></td>
+	    		<td><b>Total</b></td>
+	    		<td id="pp{{$index}}"></td>
+	    	</tr>
+	    </table>
+	    {{ end }}
     </div>
-    
+    <div id="total"></div>
     {{ end }}
     <aside class="w-30-l mt6-l">
       {{- partial "menu-contextual.html" . -}}
     </aside>
 
   </article>
+  <script>
+  	var aaa = {{ .Params.domain | len }};
+  	for (var i = 0; i < aaa; i++) {
+
+		var cost = document.getElementsByClassName("cost"+i);
+		var price = document.getElementById("pp"+i);
+		var amount = 0;
+		for (var ii = 0; ii < cost.length; ii++) {
+			amount += parseInt(cost[ii].innerHTML);
+		}
+		
+		price.innerHTML = "<b>RM<div class='total'>"+ amount+"</div></b>";
+	}
+	var total = document.getElementsByClassName("total");
+	var amt = 0;
+	for (var ii = 0; ii < total.length; ii++) {
+			amt += parseInt(total[ii].innerHTML);
+		}
+	var totals = document.getElementById("total");
+	totals.innerHTML = "<h2>Total RM"+ amt+"</h2>";
+</script>
 {{ end }}
