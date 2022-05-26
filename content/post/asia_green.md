@@ -5,6 +5,7 @@ publishdate: 2017-03-24
 
 domain:
   - name: "asiagreengroup.com"
+    hosting: "gmail"
     email:
     - name: " Chee Keong  Soon"
       email: "cksoon@asiagreengroup.com"

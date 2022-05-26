@@ -65,6 +65,7 @@
     	<ul>
 		    {{ range .domain }}
 		    <h2>{{.name}} {{ .email | len }} emails</h2>
+		    <h3>Hosting: {{ .hosting }}</h3>
 		    <table class="f6 w-100 mw8 center">
 		    	<tr>
 		    		<th>Name</th>
