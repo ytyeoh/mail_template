@@ -86,9 +86,9 @@
 				    <td>{{.login}}</td>
 				    <td>{{.usage}}GB</td>
 				    {{ if lt .usage  20 }}
-			    		<td>RM <span class="cost{{$xyz}}" value="{{  add $cost 20 }}">{{  add $cost 20 }}</span></td>
+			    		<td>RM <span class="cost{{$xyz}}" value="{{  mul 12 25 }}">{{  mul 12 25 }}</span></td>
 			    	{{ else }}
-				    	<td>RM <span class="cost{{$xyz}}" value="{{  add $cost 40 }}">{{  add $cost 40 }}</span></td>
+				    	<td>RM <span class="cost{{$xyz}}" value="{{  mul 12 50 }}">{{  mul 12 50  }}</span></td>
 			    	{{ end }}
 		    	</tr>
 		    	
