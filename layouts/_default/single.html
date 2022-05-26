@@ -94,8 +94,7 @@
 		    	
 	    	{{ end }}
 	    	<tr>
-	    		<td  colspan="4"></td>
-	    		<td><b>Total</b></td>
+	    		<td  colspan="5"></td>
 	    		<td id="pp{{$index}}"></td>
 	    	</tr>
 	    </table>
@@ -119,7 +118,7 @@
 			amount += parseInt(cost[ii].innerHTML);
 		}
 		
-		price.innerHTML = "<b>RM<div class='total'>"+ amount+"</div></b>";
+		price.innerHTML = "<b>Total RM<span class='total'>"+ amount+"</span></b>";
 	}
 	var total = document.getElementsByClassName("total");
 	var amt = 0;
